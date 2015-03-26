@@ -104,7 +104,7 @@ var destination = '/example/awesome.jpg';
 
 client.upload('/tmp/awesome.jpg', destination, function(err) {
 	if (err) throw err;
-	client.thumbnail(originalImagePaths, [{suffix: 'small', width: 100, height: 100, background: 'red', strategy: 'matted'}], {
+	client.thumbnail(destination, [{suffix: 'small', width: 100, height: 100, background: 'red', strategy: 'matted'}], {
 		notify: 'https://callback.example.com', // optional web-hook when processing is done.
 		prefix: 'foobar' // optional prefix for thumbnails created.
 	});
@@ -218,6 +218,7 @@ Projects Using Thumbd
 * **[Popbasic](https://popbasic.com)**: designs limited edition, high quality clothing.
 * **[ineffable](https://github.com/taeram/ineffable/):** A minimalist photo album powered by Flask and React.
 * **[s3-gif](https://github.com/taeram/s3-gif):** Host your GIF collection on Heroku + Amazon S3.
+* **[talent-off](http://talentooff.com.br/):** Online contest for sports videos.
 * **attachments.me**: created a searchable, visual, index of all of your email attachments (sadly defunct).
 
 Copyright
