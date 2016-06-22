@@ -1,7 +1,9 @@
 Thumbd
 ======
 
-Build Status: [![Build Status](https://travis-ci.org/bcoe/thumbd.png)](https://travis-ci.org/bcoe/thumbd)
+[![Coverage Status](https://coveralls.io/repos/bcoe/thumbd/badge.svg?branch=)](https://coveralls.io/r/bcoe/thumbd?branch=)
+[![Build Status](https://travis-ci.org/bcoe/thumbd.png)](https://travis-ci.org/bcoe/thumbd)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Thumbd is an image thumbnailing server built on top of Node.js, SQS, S3, and ImageMagick.
 
@@ -38,6 +40,10 @@ Thumbd requires the following environment variables to be set:
 * **SQS_QUEUE** the queue name to listen for image thumbnailing.
 
 When running locally, I set these environment variables in a .env file and execute thumbd using Foreman.
+
+Additionally, the following environment variable can be set to use a custom logger:
+
+**LOGGER_FILE** the path to a javascript file that exports the `info`, `warn` and `error` methods.
 
 Server
 ------
@@ -141,6 +147,7 @@ _description_ accepts the following keys:
 	* **manual:** allows for a custom convert command to be passed in:
 	  * `%(command)s -border 0 %(localPaths[0])s %(convertedPath)s`
 * **quality:** the quality of the thumbnail, in percent. e.g. `90`.
+* **autoOrient:** true/false, whether to automatically rotate the photo based on EXIF data (for correcting orientation on phone images, etc)
 
 CLI
 ---
@@ -202,7 +209,7 @@ At Attachments.me, thumbd thumbnailed tens of thousands of images a day. There a
 	* it is run with an Upstart script, which keeps the thumbnailing process on its feet.
 * Node.js is a single process, this does not take advantage of multi-processor environments.
 	* we run an instance of thumbd per-CPU on our servers.
-* be midful of the version of ImageMagick you are running:
+* be mindful of the version of ImageMagick you are running:
 	* make sure that you build it with the appropriate extensions for images you would like to support.
 	* we've had issues with some versions of ImageMagick, we run 6.6.2-6 in production.
 * Your SQS settings are important:
@@ -224,4 +231,4 @@ Projects Using Thumbd
 Copyright
 ---------
 
-Copyright (c) 2014 Contributors, See LICENSE.txt for further details.
+Copyright (c) 2015 Contributors, See LICENSE.txt for further details.
