@@ -1,5 +1,17 @@
 #!/usr/bin/env node
 
+// replace dns.lookup
+var dns = require('dns');
+
+dns.lookup = function(host, options, callback){
+  if( !callback){
+    callback = options;
+  }
+  return dns.resolve4(host, function(err, ips){
+    callback(err, ips[0], 4);
+  });
+};
+
 var thumbd = require('../lib')
 var _ = require('lodash')
 var fs = require('fs')
