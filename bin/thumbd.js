@@ -16,18 +16,6 @@ var thumbd = require('../lib')
 var _ = require('lodash')
 var fs = require('fs')
 var yargs = require('yargs')
-    .option('k', {
-      alias: 'aws_key',
-      description: 'AWS key id',
-      required: true,
-      default: process.env.AWS_KEY
-    })
-    .option('s', {
-      alias: 'aws_secret',
-      required: true,
-      description: 'AWS key secret',
-      default: process.env.AWS_SECRET
-    })
     .option('e', {
       alias: 'aws_region',
       description: 'AWS Region',
@@ -99,8 +87,6 @@ var argv = yargs.argv
 var mode = argv._.shift()
 var config = require('../lib/config').Config
 var serverOpts = {
-  aws_key: 'awsKey',
-  aws_secret: 'awsSecret',
   aws_region: 'awsRegion',
   bucket: 's3Bucket',
   convert_command: 'convertCommand',
@@ -113,8 +99,6 @@ var serverOpts = {
   profile: 'profile'
 }
 var thumbnailOpts = {
-  aws_key: 'awsKey',
-  aws_secret: 'awsSecret',
   aws_region: 'awsRegion',
   descriptions: 'descriptions',
   remote_image: 'remoteImage',
